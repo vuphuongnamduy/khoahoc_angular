@@ -1,0 +1,129 @@
+.register-container {
+  padding: 32px 16px;
+  background-color: #f9f9f9;
+  min-height: 91vh;
+  background-image: url('../../../../assets/bg14.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  padding: 20px;
+  border-radius: 8px;
+
+  .form-container {
+    max-width: 500px;
+    padding: 32px 24px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    > h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      color: #f80808;
+    }
+
+    > .error-container {
+      padding: 12px;
+      margin: 0 0 16px;
+      color: #fff;
+      background-color: rgb(255, 99, 71); /* Màu đỏ cho lỗi */
+      border-radius: 4px;
+    }
+
+    > form {
+      > .🤪 {
+        display: grid;
+        grid-column-gap: 12px;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 15px;
+      }
+
+      > .✅ {
+        margin-bottom: 20px;
+
+        > .checkbox-container {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+
+          > input {
+            width: auto;
+            margin-right: 10px;
+          }
+
+          > span {
+            font-size: 0.800rem;
+            color: #555;
+          }
+        }
+      }
+
+      > .cta-container {
+        text-align: center;
+
+        > button[type="submit"] {
+          height: 45px;
+          width: 100%;
+          padding: 0 30px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          font-size: 1rem;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #0056b3;
+          }
+
+          &:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+          }
+        }
+
+        > div {
+          text-align: left;
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .register-container {
+    padding: 48px 16px 48px;
+
+    .form-container {
+      padding: 36px;
+      border: 1px solid #ddd;
+    }
+  }
+}
+
+.input-container {
+  margin-bottom: 12px;
+
+  > label {
+    font-size: 0.875rem;
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+  }
+
+  > input {
+    padding: 10px 12px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    }
+  }
+}

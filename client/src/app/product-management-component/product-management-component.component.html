@@ -1,0 +1,87 @@
+
+<app-admin-nav></app-admin-nav>
+<div class="container">
+    <h2>Quản lý Sản phẩm</h2>
+
+    <!-- Form Sửa Sản phẩm -->
+    <form *ngIf="isEditing" (ngSubmit)="updateProduct()"
+        class="edit-product-form">
+        <div>
+            <label for="editTitle">Tên Sản phẩm:</label>
+            <input type="text" id="editTitle" name="editTitle"
+                [(ngModel)]="selectedProduct.title" required />
+        </div>
+        <div>
+            <label for="editPrice">Giá:</label>
+            <input type="number" id="editPrice" name="editPrice"
+                [(ngModel)]="selectedProduct.price" required />
+        </div>
+        <div>
+            <label for="editShortDesc">Mô tả ngắn:</label>
+            <input type="text" id="editShortDesc" name="editShortDesc"
+                [(ngModel)]="selectedProduct.short_desc" required />
+        </div>
+        <div>
+            <label for="editQuantity">Số lượng:</label>
+            <input type="number" id="editQuantity" name="editQuantity"
+                [(ngModel)]="selectedProduct.quantity" required />
+        </div>
+       
+
+        <button type="submit">Lưu</button>
+    </form>
+
+
+    <!-- Form Thêm Sản phẩm -->
+    <form *ngIf="!isEditing" (ngSubmit)="addProduct()" class="add-product-form">
+        <div>
+            <label for="title">Tên Sản phẩm:</label>
+            <input type="text" id="title" name="title"
+                [(ngModel)]="newProduct.name" required />
+        </div>
+        <div>
+            <label for="price">Giá:</label>
+            <input type="number" id="price" name="price"
+                [(ngModel)]="newProduct.price" required />
+        </div>
+        <div>
+            <label for="shortDesc">Mô tả ngắn:</label>
+            <input type="text" id="shortDesc" name="shortDesc"
+                [(ngModel)]="newProduct.short_desc" required />
+        </div>
+        <div>
+            <label for="quantity">Số lượng:</label>
+            <input type="number" id="quantity" name="quantity"
+                [(ngModel)]="newProduct.quantity" required />
+        </div>
+        <div>
+            <label for="quantity">Hình ảnh:</label>
+            <input type="text" id="quantity" name="quantity"
+                [(ngModel)]="newProduct.image" required />
+        </div>
+        <div>
+            <label for="category">Danh mục:</label>
+            <select id="category" name="category"
+                [(ngModel)]="newProduct.category" required>
+                <option *ngFor="let cat of categories" [value]="cat.id">{{
+                    cat.name }}</option>
+            </select>
+        </div>
+        <button type="submit">Thêm Sản phẩm</button>
+    </form>
+
+
+
+    <div class="product-list">
+        <!-- Sản phẩm -->
+        <div *ngFor="let product of products" class="product">
+            <img [src]="product.image" alt="{{ product.title }}" />
+            <h3>{{ product.title }}</h3>
+            <p>Giá: ${{ product.price }}</p>
+            <!-- Hiển thị các thông tin khác của sản phẩm -->
+            <button (click)="editProduct(product)">Sửa</button>
+            <button (click)="deleteProduct(product)">Xóa</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,193 @@
+<div class="checkout-container">
+  <div class="progress-container">
+    <nz-progress
+      [nzPercent]="getProgressPrecent()"
+      [nzShowInfo]="false"
+      [nzStrokeWidth]="3"
+    ></nz-progress>
+  </div>
+
+  <!-- FIRST STEP -->
+  <div *ngIf="currentStep === 1">
+    <div class="billing-container">
+      <h2>Thông tin tài khoản</h2>
+      <form>
+        <div
+          class="input-container"
+          *ngFor="let field of billingAddress; index as i"
+        >
+          <label for="">{{ field.name }}</label>
+          <input
+            nz-input
+            [type]="field.type"
+            [name]="field.name"
+            [placeholder]="field.placeholder"
+            [(value)]="field.value"
+            [(ngModel)]="field.value"
+          />
+        </div>
+      </form>
+      <button
+        nz-button
+        (click)="submitBilling()"
+        
+      >
+        Tiếp tục
+      </button>
+    </div>
+  </div>
+  <!-- SECOND STEP -->
+  <div *ngIf="currentStep === 2">
+    <div class="payment-container">
+      <h2>Chi tiết thanh toán</h2>
+      <form>
+        <div class="input-container">
+          <label for="">Số thẻ</label>
+          <input
+            nz-input
+            type="text"
+            name="cardNumber"
+            [(value)]="cardNumber"
+            [(ngModel)]="cardNumber"
+            placeholder="1234 1234 1234 1234"
+          />
+        </div>
+        <div class="input-container">
+          <label for="">Tên trên thẻ</label>
+          <input
+            nz-input
+            type="text"
+            name="cardName"
+            [(value)]="cardName"
+            [(ngModel)]="cardName"
+            placeholder="John Doe"
+          />
+        </div>
+        <div class="‼️">
+          <div class="input-container">
+            <label for="">Ngày hết hạn</label>
+            <input
+              nz-input
+              type="text"
+              name="cardExpiry"
+              [(value)]="cardExpiry"
+              [(ngModel)]="cardExpiry"
+              placeholder="06/30"
+            />
+          </div>
+          <div class="input-container">
+            <label for="">Mã bảo mật</label>
+            <input
+              nz-input
+              type="text"
+              name="cardCode"
+              [(value)]="cardCode"
+              [(ngModel)]="cardCode"
+              placeholder="123"
+            />
+          </div>
+        </div>
+      </form>
+      <div class="qr-code-section">
+        <h2>Hoặc thanh toán bằng mã QR</h2>
+        <div class="qr-code">
+          <img [src]="qrCodeUrl" alt="QR Code" />
+        </div>
+      </div>
+  
+      <!-- Nút tiếp tục -->
+      <button
+        nz-button
+        nzType="primary"
+        (click)="nextStep()"
+      >
+      Đã thanh toán bằng momo
+      </button>
+
+      <button
+        nz-button
+        [disabled]="!canPaymentSubmit()"
+        (click)="submitPayment()"
+      >
+        Tiếp tục
+      </button>
+    </div>
+  </div>
+  
+  <!-- THIRD STEP -->
+  <div *ngIf="currentStep === 3">
+    <div class="summary-container">
+      <div class="summary-container__order">
+        <h2>Tóm tắt đơn hàng</h2>
+        <div class="details">
+          <div><span>Mặt hàng</span> {{ cartData.products.length }}</div>
+          <div><span>Phương thức thanh toán</span> Tín dụng / MoMo</div>
+          <div>
+            <span>Tổng số đơn đặt hàng</span> {{ cartData.total | currency: "USD" }}
+          </div>
+        </div>
+        <button
+          nz-button
+          nzType="primary"
+          (click)="submitCheckout()"
+          [nzLoading]="loading"
+        >
+        Xác nhận thanh toán
+        </button>
+      </div>
+      
+      <div class="summary-container__items">
+        <h2>Đặt hàng</h2>
+        <div class="item-list">
+          <div class="item-container" *ngFor="let item of cartData.products">
+            <div class="item-image">
+              <img [src]="item.image" alt="" />
+            </div>
+            <div class="item-title">
+              {{ item.title }}
+            </div>
+            <div class="item-total">
+              {{ item.price | currency: "USD" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "USD" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAST STEP - THANK YOU -->
+  <div *ngIf="currentStep === 4">
+    <div class="confirmation-container">
+      <header>
+        <div class="title">
+          <h1>Thank you!</h1>
+          <p>Khóa học sẽ được gửi vào email của bạn trong vòng 15p, nếu chưa nhận được vui lòng liên hệ shop theo SDT :0123456789</p>
+        </div>
+        <div class="order-id">
+          Order ID: <span>{{ orderId }}</span>
+        </div>
+      </header>
+      <button nz-button class="cta-button" routerLink="/">
+        Tiếp tục mua sắm
+      </button>
+      <div class="products-container">
+        <h2>Tóm tắt đơn hàng</h2>
+        <div class="products-container__list">
+          <div class="list-item" *ngFor="let item of products">
+            <div class="item-image">
+              <img [src]="item.image" alt="" />
+            </div>
+            <div class="item-title">
+              {{ item.title }}
+            </div>
+            <div class="item-total">
+              {{ item.price | currency: "USD" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "USD" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="register-container">
+  <div class="form-container">
+    <h2>Đăng Ký</h2>
+    <nz-alert
+      *ngIf="errorMessage"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="errorMessage"
+      [ngStyle]="{ 'margin-bottom': '16px' }"
+    ></nz-alert>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="input-container">
+        <label for="fullName">Họ và tên</label>
+        <input
+          nz-input
+          type="text"
+          name="fullName"
+          [(ngModel)]="fullName"
+          placeholder="Enter your full name"
+        />
+      </div>
+      <div class="input-container">
+        <label for="email">Địa chỉ email</label>
+        <input
+          nz-input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Nhập địa chỉ email của bạn"
+        />
+      </div>
+      <div class="🤪">
+        <div class="input-container">
+          <label for="password">Mật khẩu</label>
+          <input
+            nz-input
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="Nhập mật khẩu"
+          />
+        </div>
+        <div class="input-container">
+          <label for="confirmPassword">Xác nhận mật khẩu</label>
+          <input
+            nz-input
+            type="password"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            placeholder="Lặp lại mật khẩu của bạn"
+          />
+        </div>
+      </div>
+      <div class="✅">
+        <div class="checkbox-container">
+          <input nz-input type="checkbox" />
+          <span>Tôi đồng ý nhận email hướng dẫn và quảng cáo</span>
+        </div>
+        <div class="checkbox-container">
+          <input nz-input type="checkbox" />
+          <span> Tôi đồng ý với Điều khoản sử dụng & Chính sách quyền riêng tư</span>
+        </div>
+      </div>
+      <div class="cta-container">
+        <button
+          nz-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [nzLoading]="loading"
+        >
+        Đăng ký
+        </button>
+        <div>
+          <div><a routerLink="/login">Đăng nhập với người dùng hiện tại</a></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@angular/cli": "^13.3.11",
+    "postcss": "^8.4.49"
+  }
+}

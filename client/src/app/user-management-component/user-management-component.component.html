@@ -1,0 +1,49 @@
+<app-admin-nav></app-admin-nav>
+<div class="container">
+    <!-- Quản lý doanh thu -->
+    <header class="header">
+      <h1>DOANH THU</h1>
+    </header>
+    <main class="main-content">
+      <section class="stats-overview">
+        <div class="stat-card">
+          <h2>Tổng Doanh Thu</h2>
+          <p>{{ totalRevenue | currency }}</p>
+        </div>
+        <div class="stat-card">
+          <h2>Tổng số đơn đặt hàng</h2>
+          <p>{{ totalOrders }}</p>
+        </div>
+        <div class="stat-card">
+          <h2>Doanh thu trung bình / đơn hàng</h2>
+          <p>{{ avgOrderValue | currency }}</p>
+        </div>
+      </section>
+  
+      <!-- Lịch sử đơn hàng -->
+      <section class="order-history-container">
+        <h2>Danh sách đơn hàng</h2>
+        <p *ngIf="error">{{ error }}</p>
+        <nz-table #basicTable [nzData]="orders" *ngIf="orders.length > 0">
+          <thead>
+            <tr>
+              <th>OrderID</th>
+              <th>Tên</th>
+              <th>Loại</th>
+              <th>Tổng cộng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of orders">
+              <td>{{ item.order_id }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.price * item.quantity | currency }}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+        <p *ngIf="orders.length === 0 && !error">Không tìm thấy đơn hàng nào.</p>
+      </section>
+    </main>
+  </div>
+  

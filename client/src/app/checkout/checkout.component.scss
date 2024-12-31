@@ -1,0 +1,244 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
+$error-color: #f10f26;
+$success-color: #28a745;
+$border-color: #dee2e6;
+$hover-background: #f1f1f1;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $light-color;
+  color: $dark-color;
+  margin: 0;
+  padding: 0;
+}
+
+.checkout-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .progress-container {
+    margin-bottom: 30px;
+  }
+
+  .billing-container,
+  .payment-container,
+  .summary-container,
+  .confirmation-container {
+    background-color: #fff;
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: $error-color;
+    }
+
+    .input-container {
+      margin-bottom: 15px;
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        &:focus {
+          border-color: $primary-color;
+          outline: none;
+        }
+      }
+    }
+
+    .qr-code-section {
+      text-align: center;
+      margin-top: 20px;
+      .qr-code {
+        margin: 10px auto;
+        img {
+          max-width: 200px;
+          display: inline-block;
+        }
+      }
+    }
+
+    .cta {
+      margin-top: 20px;
+      button {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px; 
+        background-color: $primary-color;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+
+        &:disabled {
+          background-color: $secondary-color;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  .summary-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__order {
+      flex: 1 1 100%;
+      margin-bottom: 20px;
+      background-color: $light-color;
+      border-radius: 10px;
+      padding: 15px;
+
+      .details {
+        margin: 20px;
+        div {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 0;
+          border-bottom: 1px solid $border-color;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    &__items {
+      flex: 1 1 100%;
+
+      .item-list {
+        .item-container {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+
+          .item-image {
+            flex: 0 0 50px;
+            margin-right: 10px;
+
+            img {
+              width: 50px;
+              height: 50px;
+              object-fit: cover;
+              border-radius: 5px;
+            }
+          }
+
+          .item-title {
+            flex: 1;
+            font-size: 14px;
+            color: $dark-color;
+          }
+
+          .item-total {
+            flex: 0 0 auto;
+            font-weight: bold;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .confirmation-container {
+    text-align: center;
+
+    header {
+      margin-bottom: 20px;
+
+      .title {
+        h1 {
+          font-size: 28px;
+          color: $success-color;
+        }
+        p {
+          font-size: 16px;
+          color: $secondary-color;
+        }
+      }
+
+      .order-id {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+        color: $primary-color;
+      }
+    }
+
+    .products-container {
+      h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      &__list {
+        .list-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+
+          .item-image {
+            flex: 0 0 50px;
+            margin-right: 10px;
+            img {
+              width: 50px;
+              height: 50px;
+              object-fit: cover;
+              border-radius: 5px;
+            }
+          }
+
+          .item-title {
+            flex: 1;
+            font-size: 14px;
+            color: $dark-color;
+          }
+
+          .item-total {
+            flex: 0 0 auto;
+            font-weight: bold;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+
+    .cta-button {
+      margin-bottom: 10px;
+      background-color: $primary-color;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px; 
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}

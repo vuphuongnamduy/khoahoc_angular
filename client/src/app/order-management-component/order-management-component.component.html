@@ -1,0 +1,31 @@
+<app-admin-nav></app-admin-nav>
+<div class="order-history-container">
+    <div class="container">
+        <h2>Quản lý đơn hàng</h2>
+        {{ error }}
+        <nz-table #basicTable [nzData]="orders" *ngIf="orders.length> 0">
+            <thead>
+                <tr>
+                    <th>OrderID</th>
+                    <th>Tên</th>
+                    <th>Loại</th>
+                    <th>Số lượng</th>
+                    <th>Mô tả ngắn</th>
+                    <th>Tổng cộng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orders">
+                    <td>{{ item.order_id }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.short_desc }}</td>
+                    <td>{{ item.price * item.quantity}} 
+                        $
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
